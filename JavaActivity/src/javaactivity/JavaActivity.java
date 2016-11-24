@@ -29,10 +29,13 @@ public class JavaActivity {
         CourseGrades grade = new CourseGrades(lab, score, essay, finalExam);
         System.out.println(grade);
         
+        System.out.println("The average score is " + grade.getAverage());
+        
     }
     
     public static GradedActivity getLabGrade(){
         GradedActivity lab = new GradedActivity();
+        System.out.println("Lab:");
         System.out.println("What is the students lab score?");
         Scanner keyboard = new Scanner(System.in);
         double score = keyboard.nextDouble();
@@ -46,6 +49,7 @@ public class JavaActivity {
         double min = 70;
         int missed; 
         Scanner keyboard = new Scanner(System.in);
+        System.out.println("Exam P/F:");
         System.out.println("How many questions did you missed? 0-10");
         missed = keyboard.nextInt();
         
@@ -55,6 +59,7 @@ public class JavaActivity {
     public static Essay setEssayScore(){
         double gram, spell, len, cont;
         Scanner keyboard = new Scanner(System.in);
+        System.out.println("Essay Score:");
         System.out.println("How much points did the student get on grammar? 0-30");
         gram = keyboard.nextDouble();
         System.out.println("How much points did the student get on spelling? 0-20");
@@ -71,7 +76,7 @@ public class JavaActivity {
         int num = 50;
         int missed; 
         Scanner keyboard = new Scanner(System.in);
-        
+        System.out.println("Final Exam:");
         System.out.println("How many questions did you missed? 0-10");
         missed = keyboard.nextInt();
         

@@ -9,13 +9,13 @@ package javaactivity;
  *
  * @author Kenneth R. Kutschera
  */
-public class CourseGrades{
+public class CourseGrades implements Analyzable {
 
         private GradedActivity labScore;
         private PassFailExam passFailScore;
         private Essay essayScore;
         private FinalExam finalScore;
-        //private GradedActivity[] grades = {labScore, passFailScore, essayScore, finalScore};
+        private GradedActivity[] grades = {labScore, passFailScore, essayScore, finalScore};
         
         public CourseGrades(GradedActivity lab, PassFailExam score, Essay essay, FinalExam finalExam){
             
@@ -38,13 +38,54 @@ public class CourseGrades{
         public void setFinalExam(FinalExam g){
             this.finalScore = g;
         }
+        
+        public double getAverage(){
+            double average;
+            double accum = 0;
+            for(int x = 0; x < grades.length; x++){
+                
+                accum += grades[x].getScore();
+                
+            }
+            average = accum/grades.length;
+            return average;
+        }
+        
+       public GradedActivity getHighest(){
+           GradedActivity highest = new GradedActivity();
+           
+           for(int x = 0; x < grades.length; x++){
+                
+               if(grades[x].getScore() >= grades[x+1].getScore()){
+                 highest.setScore(grades[x].getScore());
+               }
+               else{
+                 highest.setScore(grades[x+1].getScore());
+               }
+            }
+           return new GradedActivity(highest.getScore());
+       }
        
+       public GradedActivity getLowest(){
+           GradedActivity lowest = new GradedActivity();
+           
+           for(int x = 0; x < grades.length; x++){
+                
+               if(grades[x].getScore() <= grades[x+1].getScore()){
+                 lowest.setScore(grades[x].getScore());
+               }
+               else{
+                 lowest.setScore(grades[x+1].getScore());
+               }
+            }
+           return new GradedActivity(lowest.getScore());
+       }
         public String toString(){
             
             String str = "Lab Score " + labScore.getScore() + " Lab Grade: " + labScore.getGrade() +
                           "\nExam Score: " + passFailScore.getScore() + " Exam Pass/Fail: " + passFailScore.getGrade() +
                           "\nEssay Score: " + essayScore.getScore() + " Essay Grade: " + essayScore.getGrade() +
-                          "\nFinal Exam: " + finalScore.getGrade() + " Final Exam Grade: " + finalScore.getGrade();
+                          "\nFinal Exam: " + finalScore.getScore() + " Final Exam Grade: " + finalScore.getGrade();
               
             return str;
         }
